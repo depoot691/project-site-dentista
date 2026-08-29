@@ -4,9 +4,9 @@ public class CadastroDTO {
     private String nome;
     private String email;
     private String senha;
-    private Integer numero_telefone;
+    private String numero_telefone;
 
-    public CadastroDTO(String nome, String email, String senha, Integer numero_telefone){
+    public CadastroDTO(String nome, String email, String senha, String numero_telefone){
     this.nome = nome;
     this.email = email;
     this.senha = senha;
@@ -41,11 +41,11 @@ public class CadastroDTO {
         this.senha = senha;
     }
 
-    public Integer getNumero_telefone() {
+    public String getNumero_telefone() {
         return numero_telefone;
     }
 
-    public void setNumero_telefone(Integer numero_telefone) {
+    public void setNumero_telefone(String numero_telefone) {
         this.numero_telefone = numero_telefone;
     }
 

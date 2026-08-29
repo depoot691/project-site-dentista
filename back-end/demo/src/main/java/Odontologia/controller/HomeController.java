@@ -1,7 +1,9 @@
 package Odontologia.controller;
 
 
+import Odontologia.dto.CadastroDTO;
 import Odontologia.dto.LoginDTO;
+import Odontologia.service.LoginService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,15 +13,11 @@ import java.util.*;
 @RestController
 @RequestMapping("/home")
 public class HomeController {
+    private final LoginService loginService;
 
-
-    /*
-    @GetMapping("/login")
-    public ResponseEntity<String> carregarLogin(){
-       return ResponseEntity.ok("requisição com sucesso");
-   }
-   esse metodo apenas retorna um texto em String com a requisição get, ja o de baixo vai retornar um json
-     */
+    public HomeController(LoginService loginService){
+        this.loginService = loginService;
+    }
 
    @GetMapping("/login")
     public ResponseEntity<Map <String, String>> carregarLogin(){
@@ -31,18 +29,15 @@ public class HomeController {
         );
    }
 
-   @PostMapping("/login-user")
+   @PostMapping("/loginUsuario")
     public ResponseEntity<String> loginUser(@RequestBody LoginDTO request){
+        boolean validar;
 
-       String email = request.getEmail();
-       String senha = request.getSenha();
-
-       if ("admin".equals(email) && "admin".equals(senha)){
-           return ResponseEntity.ok("Login realizado com sucesso");
-       }
-       else{
-           return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Acesso não autorizado");
-       }
+        validar = loginService.validarLogin(request.getEmail(), request.getSenha());
+        if (validar){
+            return ResponseEntity.ok("validacao realizada com sucesso");
+        }
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("senha ou usuario incorreto");
    }
 
 

@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class CadastroService {
 
-    @Autowired
+  @Autowired
     private UsuarioRepository repository;
 
     public void Cadastrar(CadastroDTO dto){

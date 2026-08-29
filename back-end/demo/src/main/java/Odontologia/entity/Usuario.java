@@ -17,7 +17,7 @@ public class Usuario {
     private String email;
 
     @Column(nullable = false)
-    private Integer numero_telefone;
+    private String numero_telefone;
 
     @Column(nullable = false, length = 50)
     private String senha;
@@ -54,11 +54,11 @@ public class Usuario {
         this.email = email;
     }
 
-    public Integer getNumero_telefone() {
+    public String getNumero_telefone() {
         return numero_telefone;
     }
 
-    public void setNumero_telefone(Integer numero_telefone) {
+    public void setNumero_telefone(String numero_telefone) {
         this.numero_telefone = numero_telefone;
     }
 }
